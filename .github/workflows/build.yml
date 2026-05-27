@@ -11,9 +11,10 @@ jobs:
           sudo apt-get install -y gcc-arm-none-eabi make wget unzip
       - name: Download GD32F10x Library
         run: |
-          wget https://github.com/CommunityGD32Cores/GD32F10x_Firmware_Library/archive/refs/heads/main.zip
-          unzip main.zip
-          mv GD32F10x_Firmware_Library-main lib/GD32F10x_standard_peripheral
+         wget https://github.com/CommunityGD32Cores/GD32F10x_Firmware_Library/archive/refs/heads/master.zip
+          unzip master.zip
+          mkdir -p lib
+          mv GD32F10x_Firmware_Library-master lib/GD32F10x_standard_peripheral
       - name: Build
         run: make
       - name: Upload firmware
