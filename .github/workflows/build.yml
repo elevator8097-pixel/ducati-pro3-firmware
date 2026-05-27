@@ -1,0 +1,20 @@
+name: Build Firmware
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install ARM toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi make
+      - name: Build
+        run: make
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: ducati_pro3_firmware
+          path: ducati_pro3.bin
