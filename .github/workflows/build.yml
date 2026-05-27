@@ -14,7 +14,7 @@ jobs:
       - name: Build
         run: make
       - name: Upload firmware
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ducati_pro3_firmware
           path: ducati_pro3.bin
