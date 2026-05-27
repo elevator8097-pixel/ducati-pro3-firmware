@@ -4,13 +4,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
+      - uses: actions/checkout@v4
       - name: Install ARM toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi make
+          sudo apt-get install -y gcc-arm-none-eabi make wget unzip
+      - name: Download GD32F10x Library
+        run: |
+          wget https://github.com/CommunityGD32Cores/GD32F10x_Firmware_Library/archive/refs/heads/main.zip
+          unzip main.zip
+          mv GD32F10x_Firmware_Library-main lib/GD32F10x_standard_peripheral
       - name: Build
         run: make
       - name: Upload firmware
